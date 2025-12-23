@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	wgNet     iproxy.Net
+	wgNet     *netstack.Net
 	wgDevice  iproxy.Device
 	running   bool
 	allowedIP []string
@@ -92,7 +92,7 @@ func IsRunning() bool {
 }
 
 // Net 获取网络栈.
-func Net() iproxy.Net {
+func Net() *netstack.Net {
 	return wgNet
 }
 
