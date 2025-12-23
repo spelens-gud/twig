@@ -1,4 +1,4 @@
-package kurl
+package kgo
 
 import "net"
 

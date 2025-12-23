@@ -3,12 +3,11 @@ package kwg
 import (
 	"fmt"
 	"net/netip"
-	"os"
 	"strconv"
 	"strings"
 
 	"github.com/spelens-gud/twig/kits/kcrypto"
-	"github.com/spelens-gud/twig/kits/kurl"
+	"github.com/spelens-gud/twig/kits/kgo"
 )
 
 const (
@@ -61,11 +60,11 @@ func (c *Config) Init() {
 
 // LoadFromFile 从文件加载配置.
 func (c *Config) LoadFromFile(file string) error {
-	data, err := os.ReadFile(file)
+	data, err := kgo.LoadFileByPath(file)
 	if err != nil {
 		return fmt.Errorf("读取配置文件失败: %w", err)
 	}
-	return c.LoadFromContent(string(data))
+	return c.LoadFromContent(kgo.UnsafeBytes2string(data))
 }
 
 // LoadFromContent 从内容加载配置.
@@ -268,7 +267,7 @@ func (c *Config) ToIPC() string {
 		lines = append(lines, "preshared_key="+kcrypto.EncodeKeyHex(c.PresharedKey))
 	}
 	if c.Endpoint != "" {
-		lines = append(lines, "endpoint="+kurl.ResolveEndpoint(c.Endpoint))
+		lines = append(lines, "endpoint="+kgo.ResolveEndpoint(c.Endpoint))
 	}
 	for _, ip := range c.AllowedIPs {
 		lines = append(lines, "allowed_ip="+ip)

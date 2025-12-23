@@ -1,4 +1,4 @@
-package kfile
+package kgo
 
 import (
 	"io"
