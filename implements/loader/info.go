@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	// execPath 执行文件路径
+	// execPath 执行文件路径.
 	execPath = os.Args[0]
 	// execAbsoluteDir 执行文件相对路径
 	execAbsoluteDir = func() string {
@@ -25,15 +25,15 @@ var (
 		}
 		return ret
 	}()
-	// appname 应用名称
+	// appname 应用名称.
 	appName = NewConfigSource(getApplicationAppName)
-	// namepace 命名空间
+	// namepace 命名空间.
 	namespace = NewConfigSource(getApplicationNameSpace)
-	// hostname // 主机名
+	// hostname // 主机名.
 	hostname = NewConfigSource(getHostname)
-	// execMd5
+	// execMd5 执行文件md5.
 	execMd5 = NewConfigSource(getExecMd5)
-	// 获取环境服务版本
+	// env 获取环境服务版本.
 	env = NewConfigSource(func() string {
 		ret := kgo.GetFirstValidString(os.Getenv(EnvKey), Development)
 		fmt.Printf("[SY-TWIG] env loaded [ %s ] version [ %s ]\n", ret, version.Get().Short())

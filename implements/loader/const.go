@@ -7,7 +7,7 @@ const (
 	PreRelease  = "Staging"     // 预发布
 	Production  = "Production"  // 正式
 
-	// 应用 相关配置
+	// 应用相关配置
 	envKeyOld = "env" // Deprecated
 	EnvKey    = "ENV"
 
